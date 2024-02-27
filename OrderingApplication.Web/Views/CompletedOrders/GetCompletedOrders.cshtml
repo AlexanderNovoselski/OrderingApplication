@@ -1,0 +1,49 @@
+﻿@model OrderingApplication.Web.ViewModels.Cart.CompletedOrders.CompletedCartsViewModel
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Completed Orders</h2>
+
+    @if (Model.Items.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Names</th>
+                    <th>Item Count</th>
+                    <th>Total Price</th>
+                    <th>Total Price with VAT</th>
+                    <th>Order Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model.Items)
+                {
+                    <tr>
+                        <td>@order.Id</td>
+                        <td>@order.Quantities.Count</td>
+                        <td>$@order.Totals.Sum().ToString("F2")</td>
+                        <td>$@order.TotalsWithVAT.Sum().ToString("F2")</td>
+                        <td>@order.OrderedOn.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    </tr>
+
+                    @for (int i = 0; i < order.Prices.Count; i++)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@order.Names[i]</td>
+                            <td>@order.Quantities[i]</td>
+                            <td>$@order.Totals[i].ToString("F2")</td>
+                            <td>$@order.TotalsWithVAT[i].ToString("F2")</td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No completed orders available.</p>
+    }
+</div>

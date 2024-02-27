@@ -1,0 +1,83 @@
+﻿@model CatalogViewModel
+
+<h2>Catalog Items</h2>
+
+<div class="row">
+    @foreach (var item in Model.Items)
+    {
+        string labelText = "";
+        if (item.PriceMode.ToString() == "PerItem")
+        {
+            labelText = "Quantity";
+        }
+        else if (item.PriceMode.ToString() == "PerKg")
+        {
+            labelText = "Kilograms";
+        }
+        else if (item.PriceMode.ToString() == "PerLiter")
+        {
+            labelText = "Liters";
+        }
+
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-3"><strong>@item.Name</strong></h5>
+                    <p class="card-text">Price: @item.Price</p>
+                    <p class="card-text">Price Mode: @item.PriceMode</p>
+                    <div class="form-group">
+                        <label for="quantity">@labelText</label>
+                        <input type="text" class="form-control" id="quantity_@item.Id" name="quantity" value="@item.Quantity" required />
+                    </div>
+                    <button class="btn btn-primary" onclick="addToCart('@item.Id', '@item.Name', @item.Price, '@item.PriceMode')">Add to Cart</button>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12 text-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="?page=@i">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script>
+    function addToCart(itemId, itemName, itemPrice, priceMode) {
+        var quantityInput = $('#quantity_' + itemId);
+        var quantity = quantityInput.val();
+        var floatQuantity = parseFloat(quantityInput.val());
+
+        if (isNaN(floatQuantity) || floatQuantity <= 0) {
+            alert('Please enter a valid quantity greater than 0.');
+        } else {
+            // Send a POST request to the AddToCart action
+            $.ajax({
+                type: 'POST',
+                url: '/Cart/AddToCart',
+                data: {
+                    itemId: itemId,
+                    itemName: itemName,
+                    itemPrice: itemPrice,
+                    quantity: floatQuantity,
+                    priceMode: priceMode
+                },
+                success: function (response) {
+                    console.log('Item added to cart:', itemId, 'Quantity:', floatQuantity);
+                    alert(`${itemName} added to the cart`)
+                },
+            });
+        }
+
+    }
+</script>

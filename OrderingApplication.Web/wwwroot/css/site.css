@@ -1,0 +1,87 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+/*Catalog get items*/
+
+.card {
+    font-family: sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(3, 3, 5, 5);
+    margin: 10px;
+    padding: 10px;
+    transition: 0.6s;
+}
+
+.card:hover {
+    background-color: antiquewhite
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+/* Cart*/
+
+.product-card {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.total-section {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Cart pop up*/
+
+.cart-popup {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px; 
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.nav-item:hover .cart-popup {
+    display: block;
+}
+
+.cart-popup div {
+    margin-bottom: 10px;
+}
+
+.cart-popup span {
+    display: block;
+    margin-bottom: 5px;
+}
