@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderingApplication.Web", "OrderingApplication.Web\OrderingApplication.Web.csproj", "{E9BB5030-D0DA-42A0-9B2B-AEEE49218DE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingApplication.Web", "OrderingApplication.Web\OrderingApplication.Web.csproj", "{E9BB5030-D0DA-42A0-9B2B-AEEE49218DE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderingApplication.Services", "OrderingApplication.Services\OrderingApplication.Services.csproj", "{EA9E3C06-69C6-4DFD-B038-681836631DA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingApplication.Services", "OrderingApplication.Services\OrderingApplication.Services.csproj", "{EA9E3C06-69C6-4DFD-B038-681836631DA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderingApplication.Web.ViewModels", "OrderingApplication.Web.ViewModels\OrderingApplication.Web.ViewModels.csproj", "{A5C4C58C-D67F-43E4-9C7C-E363EFC91B1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingApplication.Web.ViewModels", "OrderingApplication.Web.ViewModels\OrderingApplication.Web.ViewModels.csproj", "{A5C4C58C-D67F-43E4-9C7C-E363EFC91B1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderingApplication.Test.Services", "OrderingApplication.Test.Services\OrderingApplication.Test.Services.csproj", "{990AE0D3-A02F-4FA6-AFEC-0A0C63EA7874}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A5C4C58C-D67F-43E4-9C7C-E363EFC91B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5C4C58C-D67F-43E4-9C7C-E363EFC91B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5C4C58C-D67F-43E4-9C7C-E363EFC91B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{990AE0D3-A02F-4FA6-AFEC-0A0C63EA7874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{990AE0D3-A02F-4FA6-AFEC-0A0C63EA7874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{990AE0D3-A02F-4FA6-AFEC-0A0C63EA7874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{990AE0D3-A02F-4FA6-AFEC-0A0C63EA7874}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -54,33 +54,36 @@
 
 <script>
     async function addToCart(itemId, itemName, itemPrice, priceMode) {
-        var quantityInput = document.getElementById(`quantity_` + itemId);
-        var quantity = quantityInput.value;
+        try {
+            var quantityInput = document.getElementById(`quantity_` + itemId);
+            var quantity = quantityInput.value;
 
-        var formattedQuantity = quantity.replace('.', ',');
+            var formattedQuantity = quantity.replace('.', ',');
 
-        var floatQuantity = parseFloat(formattedQuantity);
-
-        if (isNaN(floatQuantity) || floatQuantity <= 0) {
-            alert('Please enter a valid quantity greater than 0.');
-        } else {
-            const response = await fetch('Cart/AddToCart', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    itemId: itemId.toString(),
-                    itemName: itemName.toString(),
-                    itemPrice: itemPrice.toString(),
-                    quantity: formattedQuantity.toString(),
-                    priceMode: priceMode.toString()
-                })
-            });
-
-            if (response.ok) {
-                alert('Item added to the cart');
+            var floatQuantity = parseFloat(formattedQuantity);
+            if (isNaN(floatQuantity) || floatQuantity <= 0) {
+                alert('Please enter a valid quantity greater than 0.');
             } else {
-                console.error('Failed to add item to cart. Server returned:', response.status);
+                const response = await fetch('Cart/AddToCart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        itemId: itemId.toString(),
+                        itemName: itemName.toString(),
+                        itemPrice: itemPrice.toString(),
+                        quantity: formattedQuantity.toString(),
+                        priceMode: priceMode.toString()
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Item added to the cart');
+                } else {
+                    console.error('Failed to add item to cart. Server returned:', response.status);
+                }
             }
+        } catch (error) {
+            console.error('Error during the request:', error);
         }
     }
 

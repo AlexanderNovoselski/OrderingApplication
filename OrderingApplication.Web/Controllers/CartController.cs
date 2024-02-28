@@ -46,6 +46,8 @@ namespace OrderingApplication.Web.Controllers
                         PriceMode = parsedPriceMode,
                         Quantity = quantityReal
                     });
+
+                    return Ok();
                 }
                 else
                 {
@@ -55,6 +57,7 @@ namespace OrderingApplication.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return BadRequest(new { error = "Failed to process the request." });
             }
 
             return RedirectToAction("GetItems", "Item");

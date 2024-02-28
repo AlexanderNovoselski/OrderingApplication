@@ -17,7 +17,7 @@ namespace OrderingApplication.Services.Services
         {
             return _cartItems;
         }
-        
+
         public void AddItemToOrder(CartItemViewModel item)
         {
             try
@@ -61,9 +61,9 @@ namespace OrderingApplication.Services.Services
         private void SeedCatalogData()
         {
             _cartItems = new List<CartItemViewModel>
-        {
-            new CartItemViewModel { Id = 1, Name = "Banana", Price = 2, PriceMode = PriceMode.PerItem, Quantity = 1.55},
-        };
+            {
+                new CartItemViewModel { Id = 1, Name = "Banana", Price = 2, PriceMode = PriceMode.PerItem, Quantity = 1.55},
+            };
         }
     }
 }

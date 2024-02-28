@@ -50,7 +50,6 @@ public class ItemController : Controller
             };
 
             _catalogService.AddCatalogItem(newItemViewModel);
-
             return RedirectToAction("GetItems");
         }
         else
