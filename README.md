@@ -1,6 +1,6 @@
 # OrderApp
 
-OrderApp is a web application developed using ASP.NET, C#, JavaScript, HTML, CSS, Bootstrap, and AJAX. It includes features like managing a catalog with items, creating items, managing a shopping cart, and viewing completed orders.
+OrderApp is a web application developed using ASP.NET, C#, JavaScript, HTML, CSS, Bootstrap, MSUnit Tests. It includes features like managing a catalog with items, creating items, managing a shopping cart, and viewing completed orders.
 
 ## Table of Contents
 
