@@ -29,7 +29,7 @@
                         <label for="quantity">@labelText</label>
                         <input type="text" class="form-control" id="quantity_@item.Id" name="quantity" value="@item.Quantity" required />
                     </div>
-                    <button class="btn btn-primary" onclick="addToCart('@item.Id', '@item.Name', @item.Price, '@item.PriceMode')">Add to Cart</button>
+                    <button class="btn btn-primary" onclick="addToCart('@item.Id', '@item.Name', '@item.Price', '@item.PriceMode')">Add to Cart</button>
 
                 </div>
             </div>
@@ -53,31 +53,35 @@
 </div>
 
 <script>
-    function addToCart(itemId, itemName, itemPrice, priceMode) {
-        var quantityInput = $('#quantity_' + itemId);
-        var quantity = quantityInput.val();
-        var floatQuantity = parseFloat(quantityInput.val());
+    async function addToCart(itemId, itemName, itemPrice, priceMode) {
+        var quantityInput = document.getElementById(`quantity_` + itemId);
+        var quantity = quantityInput.value;
+
+        var formattedQuantity = quantity.replace('.', ',');
+
+        var floatQuantity = parseFloat(formattedQuantity);
 
         if (isNaN(floatQuantity) || floatQuantity <= 0) {
             alert('Please enter a valid quantity greater than 0.');
         } else {
-            // Send a POST request to the AddToCart action
-            $.ajax({
-                type: 'POST',
-                url: '/Cart/AddToCart',
-                data: {
-                    itemId: itemId,
-                    itemName: itemName,
-                    itemPrice: itemPrice,
-                    quantity: floatQuantity,
-                    priceMode: priceMode
-                },
-                success: function (response) {
-                    console.log('Item added to cart:', itemId, 'Quantity:', floatQuantity);
-                    alert(`${itemName} added to the cart`)
-                },
+            const response = await fetch('Cart/AddToCart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    itemId: itemId.toString(),
+                    itemName: itemName.toString(),
+                    itemPrice: itemPrice.toString(),
+                    quantity: formattedQuantity.toString(),
+                    priceMode: priceMode.toString()
+                })
             });
-        }
 
+            if (response.ok) {
+                alert('Item added to the cart');
+            } else {
+                console.error('Failed to add item to cart. Server returned:', response.status);
+            }
+        }
     }
+
 </script>

@@ -2,7 +2,7 @@
 {
     public enum PriceMode
     {
-        PerItem,
+        PerItem = 1,
         PerKg,
         PerLiter
     }

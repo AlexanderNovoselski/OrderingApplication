@@ -87,37 +87,44 @@ else
 
 
 <script>
-    function removeFromCart(itemId) {
+    async function removeFromCart(itemId) {
         if (itemId !== null) {
-            // Send a Delete request to the RemoveItem action
-            $.ajax({
-                type: 'DELETE',
-                url: '/Cart/RemoveItem',
-                data: {
-                    itemId: itemId,
-                },
-                success: function (response) {
-                    console.log('Item deleted from cart:', itemId);
-                    location.reload();
-                },
+            // Send a DELETE request to the RemoveItem action
+            const response = await fetch('/Cart/RemoveItem', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ itemId: itemId })
             });
-        } else {
-            console.log('Deleting item from cart canceled');
+
+            if (response.ok) {
+                console.log('Item deleted from cart:', itemId);
+                window.location.href = '/Cart';
+            } else {
+                console.log('Deleting item from cart failed');
+            }
         }
     }
 
-    function clearCart() {
-        $.ajax({
-            type: 'POST',
-            url: '/Cart/ClearCart',
-            success: function (response) {
-                console.log('Cart cleared successfully.');
-                location.reload();
+
+    async function clearCart() {
+        fetch('/Cart/ClearCart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            error: function (error) {
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.redirectTo) {
+                    window.location.reload()
+                } else {
+                    console.error('Invalid response format.');
+                }
+            })
+            .catch(error => {
                 console.error('Error clearing cart:', error);
-            }
-        });
+            });
+
     }
 
 

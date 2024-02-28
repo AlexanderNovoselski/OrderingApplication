@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OrderingApplication.Services.Contracts;
+using OrderingApplication.Web.Models.HTTPModels.Cart;
 using OrderingApplication.Web.ViewModels.Cart.PendingOrders;
 using OrderingApplication.Web.ViewModels.Catalog.Enum;
 
@@ -25,36 +26,44 @@ namespace OrderingApplication.Web.Controllers
             return View(cartViewModel);
         }
 
+
         [HttpPost]
-        public IActionResult AddToCart(int itemId, string itemName, double itemPrice, string quantity, PriceMode priceMode)
+        public IActionResult AddToCart([FromBody] AddToCartBody model)
         {
             try
             {
-                var quantityReal = double.Parse(quantity);
+                var quantityReal = double.Parse(model.Quantity);
+                var price = double.Parse(model.ItemPrice);
+                var id = int.Parse(model.ItemId);
 
-                _orderService.AddItemToOrder(new CartItemViewModel
+                if (Enum.TryParse(model.PriceMode, out PriceMode parsedPriceMode))
                 {
-                    Id = itemId,
-                    Name = itemName,
-                    Price = itemPrice,
-                    PriceMode = priceMode,
-                    Quantity = quantityReal
-                });
-
+                    _orderService.AddItemToOrder(new CartItemViewModel
+                    {
+                        Id = id,
+                        Name = model.ItemName,
+                        Price = price,
+                        PriceMode = parsedPriceMode,
+                        Quantity = quantityReal
+                    });
+                }
+                else
+                {
+                    Console.WriteLine("Invalid PriceMode value");
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-
             }
+
             return RedirectToAction("GetItems", "Item");
         }
 
-
         [HttpDelete]
-        public IActionResult RemoveItem(int itemId)
+        public IActionResult RemoveItem([FromBody] RemoveItemFromCartBody model)
         {
-            _orderService.RemoveItemFromOrder(itemId);
+            _orderService.RemoveItemFromOrder(model.itemId);
 
             return RedirectToAction("Cart");
         }
@@ -64,10 +73,8 @@ namespace OrderingApplication.Web.Controllers
         {
             _orderService.ClearCart();
 
-            return RedirectToAction("Cart");
+            return Json(new { redirectTo = Url.Action("Cart") });
         }
-
-
 
     }
 }

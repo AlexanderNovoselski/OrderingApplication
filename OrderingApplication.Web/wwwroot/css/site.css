@@ -60,7 +60,7 @@ body {
 
 /* Cart pop up*/
 
-.cart-popup {
+/*.cart-popup {
     display: none;
     position: absolute;
     top: 100%;
@@ -84,4 +84,4 @@ body {
 .cart-popup span {
     display: block;
     margin-bottom: 5px;
-}
+}*/

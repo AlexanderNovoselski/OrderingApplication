@@ -1,7 +1,5 @@
 ﻿using OrderingApplication.Services.Contracts;
 using OrderingApplication.Web.ViewModels.Cart.CompletedOrders;
-using OrderingApplication.Web.ViewModels.Catalog.Enum;
-using System.Diagnostics;
 
 namespace OrderingApplication.Services.Services
 {
