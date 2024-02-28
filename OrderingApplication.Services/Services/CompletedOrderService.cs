@@ -63,22 +63,17 @@ namespace OrderingApplication.Services.Services
 
         private void SeedCatalogData()
         {
-            _completedOrders = new List<CompletedOrdersViewModel>{
-                new CompletedOrdersViewModel
-                {
-                    Id = "1",
-                    Prices = new List<double> { 3.65, 2.10 },
-                    Quantities = new List<double> { 1.20, 1.00 },
-                    OrderedOn = new DateTime(2024, 1, 1),
-                },
-            };
-
-            foreach (var order in _completedOrders)
-            {
-                order.Names = new List<string> { "Banana", "Strawberry" };
-                order.Prices = new List<double> { 3.65, 2.10 };
-                order.Quantities = new List<double> { 1.20, 1.00 };
-            }
+            _completedOrders = new List<CompletedOrdersViewModel> // Assign the created object to _completedOrders
+    {
+        new CompletedOrdersViewModel
+        {
+            Id = "1",
+            Prices = new List<double> { 3.65, 2.10 },
+            Quantities = new List<double> { 1.20, 1.00 },
+            OrderedOn = new DateTime(2024, 1, 1),
+            Names = new List<string> { "Banana", "Strawberry" },
+        }
+    };
         }
 
 
