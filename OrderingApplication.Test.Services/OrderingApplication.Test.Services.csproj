@@ -20,8 +20,4 @@
     <ProjectReference Include="..\OrderingApplication.Services\OrderingApplication.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CatalogService\" />
-  </ItemGroup>
-
 </Project>

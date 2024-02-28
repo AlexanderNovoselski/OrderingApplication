@@ -3,6 +3,8 @@ using OrderingApplication.Services.Services;
 using OrderingApplication.Web.ViewModels.Cart.PendingOrders;
 using OrderingApplication.Web.ViewModels.Catalog.Enum;
 
+namespace OrderingApplication.Test.Services.OrderServiceTests;
+
 [TestClass]
 public class OrderServiceTests
 {
